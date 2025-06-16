@@ -1,20 +1,30 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const BlacklistedToken = require('../models/BlacklistedToken');
 const { generateAccessToken, generateRandomPassword, generateHashedPassword } = require('../utils/jwtToken');
 const { sendEmail } = require('../utils/mailer');
-const { successResponse, errorResponse, unauthorizedResponse } = require('../utils/apiResponses');
+const { successResponse, errorResponse, unauthorizedResponse, notFoundResponse } = require('../utils/apiResponses');
+const { registerValidation } = require('../validations/registerValidation');
+
 
 // Register
 exports.register = async (req, res) => {
+
+    const { error } = registerValidation(req.body);
+    if (error) {
+        return notFoundResponse(res, error.details[0].message);
+    }
+
     try {
         const { name, email, password, bio, phone, avatar } = req.body;
 
         if (!name || !email || !password) {
-            return res.status(400).json({ message: 'Name, email, and password are required' });
+
+            return notFoundResponse(res, 'Name, email, and password are required.');
         }
 
         const userExists = await User.findOne({ email });
-        if (userExists) return res.status(400).json({ message: 'Email already exists' });
+        if (userExists) return notFoundResponse(res, 'Email already exists.');
 
         const hashedPassword = await generateHashedPassword(password);
 
@@ -44,9 +54,7 @@ exports.register = async (req, res) => {
             );
         } catch (emailError) {
             console.error('Email send failed:', emailError.message);
-            return res.status(500).json({
-                message: 'User registered, but verification email could not be sent.'
-            });
+            return errorResponse(res, 'User registered, but verification email could not be sent.')
         }
 
         return successResponse(res, {}, "Registration successful. Please check your email to verify your account.");
@@ -66,7 +74,7 @@ exports.verifyEmail = async (req, res) => {
             verificationTokenExpires: { $gt: Date.now() }
         });
 
-        if (!user) return res.status(400).send('Invalid or expired token.');
+        if (!user) return notFoundResponse(res, 'Invalid or expired token.');
 
         user.isVerified = true;
         user.verificationToken = undefined;
@@ -223,6 +231,38 @@ exports.resetPassword = async (req, res) => {
     }
 };
 
+// Log Out
+exports.logout = async (req, res) => {
+    try {
+
+        const token = req.header('Authorization')?.replace('Bearer ', '');
+
+        const userId = req.user?.id;
+
+        if (!userId) {
+
+            if (token) {
+                await BlacklistedToken.create({ token });
+            }
+            req.session.destroy((err) => {
+                if (err) {
+                    return errorResponse(res, "Logout failed")
+                }
+                res.clearCookie("connect.sid");
+                return successResponse(res, "Logged out successfully");
+            });
+        } else {
+            if (token) {
+                await BlacklistedToken.create({ token });
+            }
+            return successResponse(res, "Logout successful");
+        }
+
+    } catch (error) {
+        return errorResponse(res, error.message);
+    }
+};
+
 // Get Me (Protected route)
 exports.getProfile = async (req, res) => {
     try {
@@ -231,7 +271,6 @@ exports.getProfile = async (req, res) => {
 
         res.json(user);
     } catch (error) {
-        console.error('Get me error:', error);
-        res.status(500).json({ message: 'Server error. Please try again later.' });
+        return errorResponse(res, error.message);
     }
 };

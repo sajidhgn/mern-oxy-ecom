@@ -44,7 +44,7 @@ const errorResponse = (res, error, message = MESSAGES.ERROR_OCCURRED, statusCode
 // Standardized validation error response
 const validationErrorResponse = (res, errors, message = MESSAGES.VALIDATION_FAILED, statusCode = STATUS_CODES.BAD_REQUEST) => {
   res.status(statusCode).json({
-    status: "fail",
+    status: "error",
     message,
     errors,
   });
@@ -53,7 +53,7 @@ const validationErrorResponse = (res, errors, message = MESSAGES.VALIDATION_FAIL
 // Standardized not found response
 const notFoundResponse = (res, message = MESSAGES.RESOURCE_NOT_FOUND, statusCode = STATUS_CODES.NOT_FOUND) => {
   res.status(statusCode).json({
-    status: "fail",
+    status: "error",
     message,
   });
 };
@@ -61,7 +61,7 @@ const notFoundResponse = (res, message = MESSAGES.RESOURCE_NOT_FOUND, statusCode
 // Standardized unauthorized response
 const unauthorizedResponse = (res, message = MESSAGES.UNAUTHORIZED_ACCESS, statusCode = STATUS_CODES.UNAUTHORIZED) => {
   res.status(statusCode).json({
-    status: "fail",
+    status: "error",
     message,
   });
 };
@@ -69,7 +69,7 @@ const unauthorizedResponse = (res, message = MESSAGES.UNAUTHORIZED_ACCESS, statu
 // Standardized forbidden response
 const forbiddenResponse = (res, message = MESSAGES.FORBIDDEN, statusCode = STATUS_CODES.FORBIDDEN) => {
   res.status(statusCode).json({
-    status: "fail",
+    status: "error",
     message,
   });
 };
@@ -77,7 +77,7 @@ const forbiddenResponse = (res, message = MESSAGES.FORBIDDEN, statusCode = STATU
 // Standardized conflict response
 const conflictResponse = (res, message = MESSAGES.CONFLICT, statusCode = STATUS_CODES.CONFLICT) => {
   res.status(statusCode).json({
-    status: "fail",
+    status: "error",
     message,
   });
 };

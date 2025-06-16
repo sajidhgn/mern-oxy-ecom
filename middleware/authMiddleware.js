@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const BlacklistedToken = require('../models/BlacklistedToken');
+const { notFoundResponse, unauthorizedResponse } = require("../utils/apiResponses");
 
 const auth = (allowedRoles = []) => {
   return async (req, res, next) => {
@@ -7,58 +9,42 @@ const auth = (allowedRoles = []) => {
       const token = req.header('Authorization')?.replace('Bearer ', '');
 
       if (!token) {
-        return res.status(401).json({
-          success: false,
-          message: 'Access denied. No token provided.'
-        });
+        return notFoundResponse(res, "Access denied. No token provided.");
+      }
+
+      // ✅ Check if token is blacklisted
+      const blacklisted = await BlacklistedToken.findOne({ token });
+      if (blacklisted) {
+        return unauthorizedResponse(res, "Token has been revoked. Please login again.");
       }
 
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const user = await User.findById(decoded.id.id).select('-__v');
 
       if (!user) {
-        return res.status(401).json({
-          success: false,
-          message: 'Token is not valid.'
-        });
+        return notFoundResponse(res, "Token is not valid.");
       }
 
       if (!user.isVerified) {
-        return res.status(401).json({
-          success: false,
-          message: 'Account is deactivated. Please contact support.'
-        });
+        return notFoundResponse(res, "Account is deactivated. Please contact support.");
       }
 
-      // Check if user has required role
       if (allowedRoles.length > 0 && !allowedRoles.includes(user.role)) {
-        return res.status(403).json({
-          success: false,
-          message: 'Access denied. Insufficient permissions.'
-        });
+        return unauthorizedResponse(res, "Access denied. Insufficient permissions.");
       }
 
       req.user = user;
       next();
     } catch (error) {
       if (error.name === 'TokenExpiredError') {
-        return res.status(401).json({
-          success: false,
-          message: 'Token has expired.'
-        });
+        return notFoundResponse(res, "Token has expired.");
       }
 
       if (error.name === 'JsonWebTokenError') {
-        return res.status(401).json({
-          success: false,
-          message: 'Invalid token.'
-        });
+        return notFoundResponse(res, "Invalid Token.");
       }
 
-      res.status(401).json({
-        success: false,
-        message: 'Token is not valid.'
-      });
+      return notFoundResponse(res, "Token is not valid.");
     }
   };
 };
