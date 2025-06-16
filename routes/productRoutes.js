@@ -9,4 +9,6 @@ router.get('/edit/:id', auth(["ADMIN"]), productController.getProduct);
 router.put('/update/:id', auth(["ADMIN"]), productController.updateProduct);
 router.delete('/delete/:id', auth(["ADMIN"]), productController.deleteProduct);
 
+router.get('/list', productController.getProducts);
+
 module.exports = router;

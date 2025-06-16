@@ -162,7 +162,32 @@ exports.deleteProduct = async (req, res) => {
         return successResponse(res, {}, 'Product deleted successfully.');
 
     } catch (error) {
-        console.error('Get me error:', error);
-        res.status(500).json({ message: 'Server error. Please try again later.' });
+        return errorResponse(res, err.message);
+    }
+};
+
+// List
+exports.getProducts = async (req, res) => {
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skip = (page - 1) * limit;
+
+    try {
+        const products = await Product.find().skip(skip).limit(limit).sort({ createdAt: -1 });
+
+        const total = await Product.countDocuments();
+
+        if (!products) return errorResponse(res, "Products not available.");
+        res.json({
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit),
+            totalItems: total,
+            data: products,
+        });
+
+    } catch (error) {
+        return errorResponse(res, err.message);
     }
 };

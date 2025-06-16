@@ -14,22 +14,15 @@ exports.register = async (req, res) => {
     if (error) {
         return notFoundResponse(res, error.details[0].message);
     }
-
     try {
         const { name, email, password, bio, phone, avatar } = req.body;
-
         if (!name || !email || !password) {
-
             return notFoundResponse(res, 'Name, email, and password are required.');
         }
-
         const userExists = await User.findOne({ email });
         if (userExists) return notFoundResponse(res, 'Email already exists.');
-
         const hashedPassword = await generateHashedPassword(password);
-
         const verificationToken = generateRandomPassword(10);
-
         const user = new User({
             name,
             email,
@@ -41,10 +34,7 @@ exports.register = async (req, res) => {
             verificationToken,
             verificationTokenExpires: Date.now() + 3600000
         });
-
         await user.save();
-
-        // 6. Send email
         const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${verificationToken}`;
         try {
             await sendEmail(
@@ -56,9 +46,7 @@ exports.register = async (req, res) => {
             console.error('Email send failed:', emailError.message);
             return errorResponse(res, 'User registered, but verification email could not be sent.')
         }
-
         return successResponse(res, {}, "Registration successful. Please check your email to verify your account.");
-
     } catch (error) {
         return errorResponse(res, error.message);
     }
@@ -68,25 +56,20 @@ exports.register = async (req, res) => {
 exports.verifyEmail = async (req, res) => {
     try {
         const { token } = req.query;
-
         const user = await User.findOne({
             verificationToken: token,
             verificationTokenExpires: { $gt: Date.now() }
         });
 
         if (!user) return notFoundResponse(res, 'Invalid or expired token.');
-
         user.isVerified = true;
         user.verificationToken = undefined;
         user.verificationTokenExpires = undefined;
-
         await user.save();
-
         const tokenGenUser = generateAccessToken({
             id: user._id,
             role: user.role,
         });
-
         return successResponse(res, {
             token: tokenGenUser,
             user: {
@@ -106,20 +89,14 @@ exports.verifyEmail = async (req, res) => {
 exports.resendVerificationEmail = async (req, res) => {
     try {
         const { email } = req.body;
-
         const user = await User.findOne({ email });
-
         if (!user) return errorResponse(res, "User not found");
-
-
         if (user.isVerified) return errorResponse(res, 'Email already verified.');
-
+        
         const newVerificationToken = generateRandomPassword(10);
         const newVerificationTokenExpires = Date.now() + 3600000;
-
         user.verificationToken = newVerificationToken;
         user.verificationTokenExpires = newVerificationTokenExpires;
-
         await user.save();
 
         const verificationUrl = `${process.env.FRONTEND_URL}/verify-email?token=${newVerificationToken}`;
