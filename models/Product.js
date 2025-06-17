@@ -12,8 +12,7 @@ const sizeSchema = new Schema({
         min: 0
     },
     sku: {
-        type: String,
-        unique: true
+        type: String
     },
     price: {
         type: Number
@@ -29,7 +28,7 @@ const variationSchema = new Schema({
 });
 
 const productSchema = new Schema({
-    title: { type: String, required: true },
+    title: { type: String, unique: true, required: true },
     description: { type: String, required: true },
     basePrice: { type: Number, required: true },
     variations: [variationSchema],
