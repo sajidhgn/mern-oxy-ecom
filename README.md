@@ -2,7 +2,8 @@
 
 - ✅ **Authentication and authorization system** (complete)  
 - ✅ **Product add, edit, delete, update** (complete)  
-- ✅ **Add variations with colors and sizes** (complete)  
+- ✅ **Add variations with colors and sizes** (complete)
+- ✅ **Add brands and categories** (complete)  
 - 🔄 **Add to cart** (in progress)  
 - 🔄 **Add payment integration** (in progress)  
 - 🔄 **User authentication system** (in progress)  
