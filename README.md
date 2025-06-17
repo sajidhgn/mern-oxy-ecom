@@ -1,4 +1,4 @@
-# OxCody-Ecommerce-MERN-Stack
+# Features
 
 - ✅ **Authentication and authorization system** (complete)  
 - ✅ **Product add, edit, delete, update** (complete)  
