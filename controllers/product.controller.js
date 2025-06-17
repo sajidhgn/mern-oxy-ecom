@@ -44,11 +44,11 @@ exports.addProduct = async (req, res) => {
 
         // // Check if any of these SKUs already exist in DB
         const existingSkus = await Product.find({
-            'variations.sizes.sku': { $in: incomingSkus }
+            'title': title
         });
 
         if (existingSkus.length > 0) {
-            return notFoundResponse(res, 'Some SKUs already exist. Duplicate SKUs are not allowed.');
+            return notFoundResponse(res, 'Duplicate product is not allowed');
         }
 
         const product = new Product({
@@ -79,12 +79,11 @@ exports.getProduct = async (req, res) => {
 
     try {
         const product = await Product.findById(id);
-        if (!product) return errorResponse(res, "Product not found.");
+        if (!product) return notFoundResponse(res, "Product not found.");
         res.json(product);
 
     } catch (error) {
-        console.error('Get me error:', error);
-        res.status(500).json({ message: 'Server error. Please try again later.' });
+        return notFoundResponse(res, error.message)
     }
 };
 
