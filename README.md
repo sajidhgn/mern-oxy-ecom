@@ -8,4 +8,5 @@
 - 🔄 **Add payment integration** (in progress)  
 - 🔄 **User authentication system** (in progress)  
 - 🔄 **Social login system** (in progress)  
-- 🔄 **User cart history details** (in progress)  
+- 🔄 **User cart history details** (in progress)
+- 🔄 **Frontend Integration (Nextjs)** (in progress)  
