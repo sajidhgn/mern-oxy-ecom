@@ -41,7 +41,6 @@ const orderSchema = new Schema({
   orderId: {
     type: String,
     unique: true,
-    // You can generate this manually or use UUID
   },
   user: {
     type: Schema.Types.ObjectId,
