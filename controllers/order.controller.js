@@ -10,22 +10,31 @@ const {
     notFoundResponse
 } = require('../utils/apiResponses');
 
+const { orderValidation } = require('../validations/orderValidation');
+
 
 // Add Category
-exports.addOrder = async (req, res) => {
-    const { error } = categoryValidation(req.body);
+exports.addNewOrder = async (req, res) => {
+    const { error } = orderValidation(req.body);
     if (error) {
         return notFoundResponse(res, error.details[0].message);
     }
-
     try {
-        const { name, brand_id } = req.body;
-        await addCategory(name, brand_id);
-        return successResponse(res, {}, "Category added successfully.");
+        await addOrder(req.body);
+        return successResponse(res, {}, "Order created successfully.");
     } catch (err) {
-        if (err.message === 'Duplicate category is not allowed') {
-            return notFoundResponse(res, err.message);
-        }
+        return errorResponse(res, err.message);
+    }
+};
+
+exports.getOrders = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
+
+        const result = await getAllOrders(page, limit);
+        return successResponse(res, result, "Orders fetched successfully.");
+    } catch (err) {
         return errorResponse(res, err.message);
     }
 };
