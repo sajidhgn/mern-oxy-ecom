@@ -3,8 +3,10 @@ const Joi = require('joi');
 const orderValidation = (reqBody) => {
 
 const schema = Joi.object({
-  name: Joi.string().required(),
-  brand_id: Joi.string().required()
+  user: Joi.string().required(),
+  paymentMethod: Joi.string().required(),
+  items: Joi.array().required(),
+  shippingAddress: Joi.object().required(),
 });
 
  return schema.validate(reqBody);

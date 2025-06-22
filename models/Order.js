@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const { v4: uuidv4 } = require('uuid');
 
 // Sub-schema for ordered product items
 const orderItemSchema = new Schema({
@@ -41,6 +42,7 @@ const orderSchema = new Schema({
   orderId: {
     type: String,
     unique: true,
+     default: uuidv4
   },
   user: {
     type: Schema.Types.ObjectId,
@@ -88,13 +90,6 @@ const orderSchema = new Schema({
   }
 }, {
   timestamps: true
-});
-
-orderSchema.pre('save', function(next) {
-  if (!this.orderId) {
-    this.orderId = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-  }
-  next();
 });
 
 module.exports = mongoose.model('Order', orderSchema);

@@ -37,7 +37,7 @@ const formatOrderItems = async (items) => {
 };
 
 // Main addOrder function
-exports.addOrder = async (orderData) => {
+const addOrder = async (orderData) => {
     const {
         user,
         items,
