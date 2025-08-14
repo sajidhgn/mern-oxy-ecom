@@ -5,38 +5,68 @@ const sizeSchema = new Schema({
     size: {
         type: String,
         enum: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-        default: 'M'
+        required: true
     },
     stock: {
         type: Number,
-        min: 0
+        min: 0,
+        required: true
     },
     sku: {
-        type: String
+        type: String,
+        required: true
     },
     price: {
-        type: Number
+        type: Number,
+        required: true
     }
 });
 
 const variationSchema = new Schema({
     color: {
         type: String,
-        default: "white"
+        required: true
     },
-    sizes: [sizeSchema]
+    sizes: {
+        type: [sizeSchema],
+        required: true,
+        validate: {
+            validator: function (value) {
+                return value.length > 0;
+            },
+            message: 'At least one size is required.'
+        }
+    }
 });
 
 const productSchema = new Schema({
     title: { type: String, unique: true, required: true },
     description: { type: String, required: true },
     basePrice: { type: Number, required: true },
-    variations: [variationSchema],
-    thumbnail: { type: String },
-    discountPercentage: { type: Number },
-    category: { type: String },
-    brand: { type: String },
-    images: [{ type: String }],
+    variations: {
+        type: [variationSchema],
+        required: true,
+        validate: {
+            validator: function (value) {
+                return value.length > 0;
+            },
+            message: 'At least one variation is required.'
+        }
+    },
+    thumbnail: { type: String, required: true },
+    discountPercentage: { type: Number, required: true },
+    category: { type: String, required: true },
+    brand: { type: String, required: true },
+    images: {
+        type: [String],
+        required: true,
+        validate: {
+            validator: function (value) {
+                return value.length > 0;
+            },
+            message: 'At least one image is required.'
+        }
+    }
 }, {
     timestamps: true
 });

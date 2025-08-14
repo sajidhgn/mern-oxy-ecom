@@ -1,5 +1,5 @@
 const {
-   addOrder,
+   createOrderAndCheckout,
     updateOrderStatus,
     getAllOrders
 } = require('../services/orderService');
@@ -10,7 +10,7 @@ const {
     notFoundResponse
 } = require('../utils/apiResponses');
 
-const { orderValidation } = require('../validations/orderValidation');
+const { orderValidation, orderStatusValidation } = require('../validations/orderValidation');
 
 
 // Add Category
@@ -20,9 +20,28 @@ exports.addNewOrder = async (req, res) => {
         return notFoundResponse(res, error.details[0].message);
     }
     try {
-        await addOrder(req.body);
+        await createOrderAndCheckout(req.body);
         return successResponse(res, {}, "Order created successfully.");
     } catch (err) {
+        return errorResponse(res, err.message);
+    }
+};
+
+// Update Order
+exports.updateOrder = async (req, res) => {
+
+    const { error } = orderStatusValidation(req.body);
+    if (error) {
+        return notFoundResponse(res, error.details[0].message);
+    }
+
+    try {
+        const result = await updateOrderStatus(req.params.id, req.body);
+        return successResponse(res, result, "Order updated successfully.");
+    } catch (err) {
+        if (err.message.startsWith('Order not found')) {
+            return notFoundResponse(res, err.message);
+        }
         return errorResponse(res, err.message);
     }
 };
