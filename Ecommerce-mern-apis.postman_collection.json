@@ -1,0 +1,1202 @@
+{
+	"info": {
+		"_postman_id": "cdaa052e-4689-46dc-a1b6-398934dc801b",
+		"name": "Ecommerce-mern-apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46056271",
+		"_collection_link": "https://sajidhgn-1450091.postman.co/workspace/e785f9ca-8cf9-4692-80e5-2393070a2dbf/collection/46056271-cdaa052e-4689-46dc-a1b6-398934dc801b?action=share&source=collection_link&creator=46056271"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Forgot Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sajidhgn@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sajidhgn@gmail.com\",\n    \"password\": \"3648Cultas@#$\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/auth/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6eyJpZCI6IjY4NGQxZWY1ZDIzODY5YWQ5YTA3MTgwZiIsInJvbGUiOiJVU0VSIn0sImlhdCI6MTc0OTg4ODA2NSwiZXhwIjoxNzQ5ODkxNjY1fQ.1zhEbUyAjIaZmKAUe-QPXpvB86-jkOHogCQsioq0OZs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"2137570016\",\n    \"newPassword\": \"1122334455\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"sajidhgn\",\n    \"email\": \"sajidhgn@gmail.com\",\n    \"password\": \"1122334455\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/auth/verify-email?token=9894787309",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"auth",
+								"verify-email"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "9894787309"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend Verification",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sajidhgn@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/auth/resend-verification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"auth",
+								"resend-verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"2137570016\",\n    \"newPassword\": \"1122334455\" \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/auth/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Zaras\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/brand/update/685119a8b665fb7c24d297c2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"brand",
+								"update",
+								"685119a8b665fb7c24d297c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/brand/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"brand",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/delete/684f8ffa5739ffbf8bfe8ebb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"delete",
+								"684f8ffa5739ffbf8bfe8ebb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/brand/edit/685119a8b665fb7c24d297c2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"brand",
+								"edit",
+								"685119a8b665fb7c24d297c2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"brands\":[\n  {\n    \"name\": \"Zara\"\n  },\n  {\n    \"name\": \"Nike\"\n  },\n  {\n    \"name\": \"Adidas\"\n  }\n]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/brand/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"brand",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Shirts\",\n  \"brand_id\": \"685119a8b665fb7c24d297c2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/category/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"category",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/category/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"category",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/category/delete/685132fc88c12f082e1f49a9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"category",
+								"delete",
+								"685132fc88c12f082e1f49a9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Shirts\",\n  \"brand_id\": \"685119a8b665fb7c24d297c3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/category/update/685135b028b8f9f10ce75479",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"category",
+								"update",
+								"685135b028b8f9f10ce75479"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/category/edit/685132fc88c12f082e1f49a9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"category",
+								"edit",
+								"685132fc88c12f082e1f49a9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Red Cotton Shirt\",\n  \"description\": \"A high-quality cotton shirt for everyday wear.\",\n  \"basePrice\": 30,\n  \"thumbnail\": \"https://i.pinimg.com/736x/cc/b8/6a/ccb86af3c6db37989f9c0db5576a391c.jpg\", \n  \"discountPercentage\": 5,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://i.pinimg.com/736x/cc/b8/6a/ccb86af3c6db37989f9c0db5576a391c.jpg\", \n    \"https://swaggy.pk/cdn/shop/files/BlackWhiteBoldSimpleFashionProductPromotionLandscapeBanner_1920x850px_1900x1100px_400x533px_720x1080px_32.jpg?v=1731746534\" \n  ],\n  \"variations\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/delete/684f8ffa5739ffbf8bfe8ebb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"delete",
+								"684f8ffa5739ffbf8bfe8ebb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/list?page=2&limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Sajid Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/update/684f8ffa5739ffbf8bfe8ebb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"update",
+								"684f8ffa5739ffbf8bfe8ebb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/edit/684f8ffa5739ffbf8bfe8ebb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"edit",
+								"684f8ffa5739ffbf8bfe8ebb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"productId\" : \"68510026295db8e0668682b1\",\n            \"productName\": \"Red Cotton Shirt\",\n            \"color\":\"White\",\n            \"size\":\"M\",\n            \"sku\":\"DEFAULT-RED-COTTON-SHIRT-M\",\n            \"categoryId\": \"6851344969e53d367bc3f466\",\n            \"brandId\": \"685119a8b665fb7c24d297c4\",\n            \"quantity\":10,\n            \"price\":30,\n            \"discountPercentage\":50\n        },\n        {\n            \"productId\" : \"684fa1fe70961310d8b64856\",\n            \"productName\": \"White Cotton Shirt\",\n            \"color\":\"White\",\n            \"size\":\"M\",\n            \"sku\":\"DEFAULT-WHITE-COTTON-SHIRT-M\",\n            \"categoryId\": \"6851344969e53d367bc3f466\",\n            \"brandId\": \"685119a8b665fb7c24d297c4\",\n            \"quantity\":10,\n            \"price\":30,\n            \"discountPercentage\":50\n        }\n    ],\n    \"user\": \"6856f4247edd5f21e355608f\",\n    \"totalAmount\": 300,\n    \"shippingAddress\": {\n        \"fullName\": \"Abdul Basit\",\n        \"address1\": \"Chk 223/EB Tehsil Burewala District Vehari\",\n        \"city\": \"Burewala\",\n        \"state\": \"Punjab\",\n        \"postalCode\": \"61010\",\n        \"country\": \"Pakistan\"\n    },\n    \"paymentMethod\": \"Credit Card\",\n    \"paymentStatus\": \"Pending\",\n    \"orderStatus\": \"Pending\",\n    \"isPaid\" :\"false\",\n    \"paidAt\": \"2025-06-21T18:24:23.131+00:00\",\n    \"deliveredAt\": \"2025-06-21T18:24:23.131+00:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}order/add",
+							"host": [
+								"{{url}}order"
+							],
+							"path": [
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/delete/684f8ffa5739ffbf8bfe8ebb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"delete",
+								"684f8ffa5739ffbf8bfe8ebb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/list?page=2&limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"list"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Sajid Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/update/684f8ffa5739ffbf8bfe8ebb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"update",
+								"684f8ffa5739ffbf8bfe8ebb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Premium Cotton T-Shirt\",\n  \"description\": \"A high-quality cotton t-shirt for everyday wear.\",\n  \"basePrice\": 24.99,\n  \"thumbnail\": \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n  \"discountPercentage\": 10,\n  \"category\": \"Apparel\",\n  \"brand\": \"TopWear\",\n  \"images\": [\n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17469877539726143.png\", \n    \"https://storage.googleapis.com/peepskill-bucket/peepskill-17460504041539709.png\" \n  ],\n  \"variations\": [\n    {\n      \"color\": \"White\",\n      \"sizes\": [\n        {\n          \"size\": \"M\",\n          \"stock\": 50,\n          \"sku\": \"TS-WHITE-M\",\n          \"price\": 24.99\n        },\n        {\n          \"size\": \"L\",\n          \"stock\": 30,\n          \"sku\": \"TS-WHITE-L\"\n        }\n      ]\n    },\n    {\n      \"color\": \"Black\",\n      \"sizes\": [\n        {\n          \"size\": \"S\",\n          \"stock\": 20,\n          \"sku\": \"TS-BLACK-S\"\n        },\n        {\n          \"size\": \"XL\",\n          \"stock\": 15,\n          \"sku\": \"TS-BLACK-XL\"\n        }\n      ]\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3032/api/product/edit/684f8ffa5739ffbf8bfe8ebb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3032",
+							"path": [
+								"api",
+								"product",
+								"edit",
+								"684f8ffa5739ffbf8bfe8ebb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
