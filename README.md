@@ -48,8 +48,3 @@ This project includes authentication, product management, cart system, order flo
 - Update profile and view order history  
 - JWT token renewal  
 - Password reset (optional / planned)
-
----
-
-## 🧠 Folder Structure
-
